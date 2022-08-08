@@ -1,5 +1,2 @@
 name	control	treatment	norm_method
-PLCPRF5_Cabozantantib	T0_1,T0_2,T0_3	Caboz_1,Caboz_2,Caboz_3	control
-PLCPRF5_DMSO	T0_1,T0_2,T0_3	DMSO_1,DMSO_2,DMSO_3	control
-PLCPRF5_Donafenib	T0_1,T0_2,T0_3	Donafenib_1,Donafenib_2,Donafenib_3	control
-PLCPRF5_Sorafenib	T0_1,T0_2,T0_3	Sorafenib_1,Sorafenib_2,Sorafenib_3	control
+HepG2_Drug1	T0_1,T0_2,T0_3	Drug_1,Drug2_2,Drug_3	control
