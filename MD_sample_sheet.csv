@@ -1,0 +1,16 @@
+LibID,SampleName,Fastq,Group,Cell_Line
+MD_Caboz_1_S13,Caboz_1,MD_Caboz_1_S13_R1_001.fastq.gz,Cabozantantib,PLC/PRF/5
+MD_Caboz_2_S14,Caboz_2,MD_Caboz_2_S14_R1_001.fastq.gz,Cabozantantib,PLC/PRF/5
+MD_Caboz_3_S15,Caboz_3,MD_Caboz_3_S15_R1_001.fastq.gz,Cabozantantib,PLC/PRF/5
+MD_DMSO_1_S4,DMSO_1,MD_DMSO_1_S4_R1_001.fastq.gz,DMSO,PLC/PRF/5
+MD_DMSO_2_S5,DMSO_2,MD_DMSO_2_S5_R1_001.fastq.gz,DMSO,PLC/PRF/5
+MD_DMSO-4_S6,DMSO_3,MD_DMSO-4_S6_R1_001.fastq.gz,DMSO,PLC/PRF/5
+MD_Donaf_1_S10,Donafenib_1,MD_Donaf_1_S10_R1_001.fastq.gz,Donafenib,PLC/PRF/5
+MD_Donaf_2_S11,Donafenib_2,MD_Donaf_2_S11_R1_001.fastq.gz,Donafenib,PLC/PRF/5
+MD_Donaf_3_S12,Donafenib_3,MD_Donaf_3_S12_R1_001.fastq.gz,Donafenib,PLC/PRF/5
+MD_Pretr_1_S1,T0_1,MD_Pretr_1_S1_R1_001.fastq.gz,T0,PLC/PRF/5
+MD_Pretr_2_S2,T0_2,MD_Pretr_2_S2_R1_001.fastq.gz,T0,PLC/PRF/5
+MD_Pretr_3_S3,T0_3,MD_Pretr_3_S3_R1_001.fastq.gz,T0,PLC/PRF/5
+MD_Soraf_1_S7,Sorafenib_1,MD_Soraf_1_S7_R1_001.fastq.gz,Sorafenib,PLC/PRF/5
+MD_Soraf_1_S8,Sorafenib_2,MD_Soraf_1_S8_R1_001.fastq.gz,Sorafenib,PLC/PRF/5
+MD_Soraf_1_S9_R1_001,Sorafenib_3,MD_Soraf_1_S9_R1_001.fastq.gz,Sorafenib,PLC/PRF/5
