@@ -2,6 +2,7 @@ CRISPR Screen
 =======
 
 Basic nextflow implementation of our CRISPR Screen pipline. For now, it is dependent on longleaf and mageck. You must have installed mageck on longleaf. 
+It also relies on R/4.2.1 on longleaf loaded as module and you should have installed dplyr into that R version.
 
 ```
 module load anaconda
