@@ -16,6 +16,7 @@ params.create_samplesheet	= ''
 params.grna			= ''
 params.control_guides		= ''
 params.contrasts		= ''
+params.help			= false
 
 // Import modules
 
@@ -24,6 +25,7 @@ include { check_ss }		from './modules/check_samplesheet'
 include { count }		from './modules/count'
 include { merge_counts }	from './modules/merge'
 include { rra }			from './modules/test'
+include { helpMessage }		from './modules/functions'
 
 // Define workflow
 
@@ -97,6 +99,10 @@ workflow CRISPR {
 
 workflow {
 
+	if (params.help) {
+		log.info helpMessage()
+		exit 0
+	}
 	if (params.create_samplesheet && params.sample_sheet) {
 		exit 1, "ERROR: Conflicting samplesheet arguments. Choose one or the other."
 	}

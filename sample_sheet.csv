@@ -1,3 +1,0 @@
-LibID,SampleName,Fastq,Group,Cell_Line
-MD_Drug1_1_S13,Drug1_1,MD_Drug1_1_S13_R1_001.fastq.gz,Drug1,HepG2
-MD_Control_1_S13,Control_1,MD_Control_1_S13_R1_001.fastq.gz,Control,HepG2
