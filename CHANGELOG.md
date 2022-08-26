@@ -1,13 +1,13 @@
-raab-lab/crispr-screens: Changelog
+raab-lab/rnaseq: Changelog
 ==============================
 
 The format of this changelog is based on the [nf-core](https://github.com/nf-core/rnaseq/blob/master/CHANGELOG.md) changelog.
 
-## [1.0.0] - 2022-08-16
+## [1.0.0] - 2022-08-17
 
 ### Updates
 
-- This is the first release of the CRISPR pipeline refactored in DSL2.
+- This is the first release of the DSL2 implementation of the CRISPR pipeline. 
 
 ### Parameters
 
