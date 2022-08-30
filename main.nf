@@ -18,84 +18,18 @@ params.control_guides		= ''
 params.contrasts		= ''
 params.help			= false
 
-// Import modules
+// import subworkflows
 
-include { create_ss }		from './modules/create_samplesheet'
-include { check_ss }		from './modules/check_samplesheet'
-include { count }		from './modules/count'
-include { merge_counts }	from './modules/merge'
-include { rra }			from './modules/test'
-include { helpMessage }		from './modules/functions'
+include { CREATE_SAMPLESHEET }			from './subworkflows/create_samplesheet'
+include { CREATE_SAMPLESHEET as AT_CREATE_SS }	from './subworkflows/create_samplesheet'
+include { CRISPR }				from './subworkflows/crispr'
+include { CRISPR as AT_CRISPR }			from './subworkflows/crispr'
 
-// Define workflow
+// import modules
 
-def parse_samplesheet(LinkedHashMap row) {
-	def meta = [:]
-	meta.id		= row.SampleID
-	meta.cell_line	= row["Cell Line"]
-	meta.trt	= row.Treatment
-
-	def array = [meta, file(row.R1)]
-
-	return array
-
-}
-
-def parse_contrasts(LinkedHashMap row) {
-	def meta = [:]
-	meta.name		= row.name
-	meta.control		= row.control
-	meta.trt		= row.treatment
-	meta.norm_method 	= row.norm_method
-
-	return meta
-}
-
-// Create the samplesheet given a data directory
-
-workflow CREATE_SAMPLESHEET {
-
-	take:
-	inventory
-
-	main:
-
-	create_ss(inventory)
-
-	emit:
-	create_ss.out
-
-}
-
-workflow CRISPR {
-
-	take:
-	samplesheet
-
-	main:
-
-	// Check the sample sheet
-	check_ss(samplesheet)
-	check_ss.out
-		.splitCsv(header:true)
-		.map { parse_samplesheet(it) }
-		.set { READS }
-
-	// Count reads by sample
-	count(READS, params.grna)
-
-	// Merge to count matrix
-	merge_counts(count.out.counts.collect())
-
-	// Test contrasts
-	Channel
-		.fromPath(params.contrasts)
-		.splitCsv(header:true, sep: '\t')
-		.map { parse_contrasts(it) }
-		.set { contrasts }
-
-	rra(merge_counts.out, params.control_guides, contrasts)
-}
+include { pull_experiment; pull_samples }	from './modules/airtable'
+include { update_paths }			from './modules/airtable'
+include { helpMessage }				from './modules/functions'
 
 workflow {
 
@@ -103,6 +37,17 @@ workflow {
 		log.info helpMessage()
 		exit 0
 	}
+
+	if (params.new_experiment) {
+	// TODO: Get experiment IDs into the samplesheet
+		pull_experiment(params.new_experiment) | AT_CREATE_SS | update_paths
+	}
+
+
+	if (params.pull_samples) {
+		pull_samples(params.pull_samples) | AT_CRISPR
+	}
+
 	if (params.create_samplesheet && params.sample_sheet) {
 		exit 1, "ERROR: Conflicting samplesheet arguments. Choose one or the other."
 	}
