@@ -1,18 +1,63 @@
-CRISPR Screen 
-=======
+CRISPR 
+======
 
-Basic nextflow implementation of our CRISPR Screen pipline. For now, it is dependent on longleaf and mageck. You must have installed mageck on longleaf. 
-It also relies on R/4.2.1 on longleaf loaded as module and you should have installed dplyr into that R version.
+A Nextflow DSL2 implementation of the Raab Lab CRISPR screens processing pipeline. 
 
-```
-module load anaconda
-conda create -n crispr-screen 
-conda install -c bioconda mageck 
-```
-For editing the below sample sheets I suggest downloading them, opening in a excel or similar and saving as a csv or tsv (as the original was) and then reuploading to longleaf. 
-To run: 
-  1. Download this repository and copy to longleaf with a new name for your experiment
-  2. Create a raw/ directory that contains your fastq.gz files 
-  3. Edit sample_sheet.csv to have one row for each fastq file 
-  4. Edit contrasts.tsv to set up samples that will be compared in mageck test (columns treatment and control are comma separated
-  5. Run  ` sbatch run_analysis.sh `
+In Nextflow, data flows through **channels** and into **processes**,
+which transforms the data in some way and produces an output that can be passed to another process.
+Processes are similar to functions.
+Similar processes are grouped into **modules**, which can be invoked in the main script.
+
+Modules and processes are then organized into **workflows**,
+which is a set of processes and channels that constitute the pipeline.
+
+Usage
+=====
+
+Getting Nextflow
+----------------
+
+The easiest way to get Nextflow is to simply load from Longleaf:
+
+    module load nextflow
+
+Since the pipeline is hosted on a private repo,
+we need to set up an access token for automatic retrieval.
+
+To do this go to your github settings and select "Developer settings".
+Click the "Personal access tokens" tab and "Generate new token".
+Set the expiration to whatever you like (just know you will have to do this again when it expires)
+and check the "repo" box under scopes. Then "Generate token".
+
+Once you have copied your token go to Longleaf
+and create a file called `scm` in `~/.nextflow` with your favorite editor:
+
+    vim ~/.nextflow/scm
+
+The file should have the following structure:
+
+    providers {
+	    github {
+		user = '<github username>'
+		password = '<access token>'
+	    }
+    }
+
+Save the file and then run:
+
+    chmod go-rwx ~/.nextflow/scm
+
+**This is important because the access token is essentially a password so keep it safe.**
+
+Workflow Steps
+--------------
+
+This pipeline is implemented in two workflow steps, helper scripts for running each step can be found ![here](helper).
+
+1. Create a barebones samplesheet from your fastq directory. This will only fill in fastq paths and the library ID (assumed to be everything before the first underscore in the filename), **so other meta data will need to be filled in manually according to the [sample sheet format](docs/params.md)**.
+
+       sbatch create_samplesheet.sh
+
+2. Count guides and test enrichment. This step will output a counts table and will test the contrasts given in the [contrasts](docs/params.md) file.
+
+       sbatch crispr.sh
