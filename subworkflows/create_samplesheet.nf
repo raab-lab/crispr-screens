@@ -1,6 +1,6 @@
 // Create the samplesheet given a data directory
 
-include { create_ss }		from './modules/create_samplesheet'
+include { create_ss }		from '../modules/create_samplesheet'
 
 workflow CREATE_SAMPLESHEET {
 

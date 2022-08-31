@@ -1,9 +1,9 @@
 // Import CRISPR Screen modules
 
-include { check_ss }		from './modules/check_samplesheet'
-include { count }		from './modules/count'
-include { merge_counts }	from './modules/merge'
-include { rra }			from './modules/test'
+include { check_ss }		from '../modules/check_samplesheet'
+include { count }		from '../modules/count'
+include { merge_counts }	from '../modules/merge'
+include { rra }			from '../modules/test'
 
 // Define parsing functions
 
