@@ -11,7 +11,7 @@
 module add nextflow
 
 ## MODIFY ALL OF THE PATHS TO YOUR SPECIFIC PROJECT
-nextflow run raab-lab/rnaseq \
+nextflow run raab-lab/crispr-screens \
 		--sample_sheet /path/to/sample_sheet \
 		--grna /path/to/guide/library \
 		--control_guides /path/to/control/guides \
