@@ -3,6 +3,11 @@ raab-lab/crispr-screens: Changelog
 
 The format of this changelog is based on the [nf-core](https://github.com/nf-core/rnaseq/blob/master/CHANGELOG.md) changelog.
 
+## [2.1.1] - 2022-09-01
+
+Random bug fixes because I did a bad job testing before pushing :grimacing:.
+`--contrast` needs to be fixed to `--contrasts` in helper scripts.
+
 ## [2.1] - 2022-08-26
 
 :exclamation: Big Enhancement
