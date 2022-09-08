@@ -61,3 +61,38 @@ This pipeline is implemented in two workflow steps, helper scripts for running e
 2. Count guides and test enrichment. This step will output a counts table and will test the contrasts given in the [contrasts](docs/params.md) file.
 
        sbatch crispr.sh
+
+Airtable
+---------
+
+This pipeline interfaces with the Raab Lab airtable. We use [pyairtable](https://pyairtable.readthedocs.io/en/latest/) to interact with the Airtable API. Install it with:
+
+    module load python/3.8.8
+    pip install --user pyairtable
+
+Next, go to your account page and copy your personal API key (you made need to generate it first). Then go to Longleaf and create a file called `.secrets` in your home directory:
+
+    vim ~/.secrets
+
+Add this line to the file:
+
+    export AIRTABLE_API_KEY=<YOUR_API_KEY>
+
+Save the file and then run:
+
+    chmod go-rwx ~/.secrets
+
+**This is important because the API key is essentially a password so keep it safe.**
+
+Airtable Steps
+--------------
+
+Running the pipeline with airtable is implemented in 3 steps. Helper scripts can be found ![here](helper).
+
+1. If you just received new data and need to process it for the first time, first fill out the Experiments table with the experiment type and where the raw fastq data is located (Data Directory). Then pull the new experiment, create a samplesheet, and update the samples table with the new samples. If you are re-running with an experiment already in the Samples *DONT RUN THIS STEP*, otherwise you'll duplicate records in the Samples table.
+
+       ./new_experiment.sh <EXPERIMENT ID>
+
+2. After filling in experiment metadata for your samples, pull them and run all the analyses from [step 2](#workflow-steps) of the workflow.
+
+       sbatch pull_samples.sh
