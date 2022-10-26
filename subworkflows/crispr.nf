@@ -26,7 +26,8 @@ def parse_contrasts(LinkedHashMap row) {
 	meta.trt		= row.treatment
 	meta.norm_method 	= row.norm_method
 
-	return meta
+	def array = [meta]
+	return array
 }
 
 workflow CRISPR {
