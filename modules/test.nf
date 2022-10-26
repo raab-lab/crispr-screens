@@ -13,7 +13,7 @@ process rra {
 	input:
 	path counts
 	path control_guides
-	val contrast
+	tuple val(contrast)
 
 	output:
 	path "${contrast.name}*"
