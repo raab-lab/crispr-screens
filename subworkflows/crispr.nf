@@ -9,7 +9,7 @@ include { rra }			from '../modules/test'
 
 def parse_samplesheet(LinkedHashMap row) {
 	def meta = [:]
-	meta.id		= row.SampleID
+	meta.id		= row.ID
 	meta.cell_line	= row["Cell Line"]
 	meta.trt	= row.Treatment
 
