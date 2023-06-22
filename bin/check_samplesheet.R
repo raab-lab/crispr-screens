@@ -15,7 +15,7 @@ args <- commandArgs(trailingOnly = T)
 SS <- read.csv(args[1], colClasses = "character", na.strings = c("", "NA"), check.names = F)
 workflow <- args[2]
 
-cols <- c("R1", "SampleID", "Cell Line", "Treatment")
+cols <- c("R1", "SampleID", "Cell Line", "Treatment", "Replicate")
 
 missing <- !(cols %in% colnames(SS))
 if( any(missing) ) {
