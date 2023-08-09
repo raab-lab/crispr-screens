@@ -13,7 +13,7 @@ module add nextflow
 source ~/.secrets/airtable
 
 ## MODIFY THE EXPERIMENT ID, WORK, OUTPUT, AND EMAIL FOR YOUR RUN
-nextflow run raab-lab/rnaseq \
+nextflow run raab-lab/crispr-screens \
 	--pull_samples EXPERIMENT ID \
 	-w /path/to/work \
 	--outdir /path/to/Output \
