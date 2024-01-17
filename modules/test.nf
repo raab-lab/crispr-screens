@@ -3,7 +3,7 @@
 process rra {
 	publishDir "${params.outdir}/results/${contrast.name}", mode: 'copy'
 
-	conda 'bioconda::mageck'
+	//conda 'bioconda::mageck'
 	tag "${contrast.name}"
 
 	cpus 8
@@ -20,7 +20,7 @@ process rra {
 
 	script:
 	"""
-	mageck test \\
+	singularity exec -B /work docker://davidliwei/mageck:latest mageck test \\
 		-k $counts \\
 		-t ${contrast.trt} \\
 		-c ${contrast.control} \\
