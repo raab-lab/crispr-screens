@@ -20,7 +20,7 @@ process rra {
 
 	script:
 	"""
-	singularity exec -B /work docker://davidliwei/mageck:latest mageck test \\
+	singularity exec -B /work -B /proj/jraablab docker://davidliwei/mageck:latest mageck test \\
 		-k $counts \\
 		-t ${contrast.trt} \\
 		-c ${contrast.control} \\

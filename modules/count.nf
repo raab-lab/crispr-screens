@@ -21,7 +21,7 @@ process count {
 
 	script:
 	"""
-	singularity exec -B /work docker://davidliwei/mageck:latest mageck count \\
+	singularity exec -B /work -B /proj/jraablab docker://davidliwei/mageck:latest mageck count \\
 		-l $grna \\
 		-n ${meta.id} \\
 		--sample-label ${meta.id} \\
