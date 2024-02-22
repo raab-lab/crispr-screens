@@ -3,6 +3,18 @@ raab-lab/crispr-screens: Changelog
 
 The format of this changelog is based on the [nf-core](https://github.com/nf-core/rnaseq/blob/master/CHANGELOG.md) changelog.
 
+## [3.0] - 2024-02-22
+
+:exclamation: Major Release
+
+This release changes how mageck runs and updates airtable.
+
+### Updates
+
+- The samplesheet includes a new column called SampleNumber (see [docs](docs/params.md)).
+- Bumped to pyairtable version 2.1.0.post1 and refactored airtable scripts to accomadate changes to the airtable API (no more API keys).
+- mageck runs with singularity instead of conda
+
 ## [2.1.1] - 2022-09-01
 
 Random bug fixes because I did a bad job testing before pushing :grimacing:.
