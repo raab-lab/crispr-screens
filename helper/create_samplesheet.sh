@@ -10,7 +10,7 @@
 
 module add nextflow
 
-nextflow run raab-lab/rnaseq \
+nextflow run raab-lab/crispr-screens \
 		--create_samplesheet /full/path/to/fastq/dir \
 		-latest \
 		-ansi-log false

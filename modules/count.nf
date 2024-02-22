@@ -3,7 +3,7 @@
 process count {
 	publishDir "${params.outdir}/counts", mode: 'copy'
 
-	conda 'bioconda::mageck'
+	//conda 'bioconda::mageck'
 	tag "${meta.id}"
 
 	cpus 8
@@ -21,7 +21,7 @@ process count {
 
 	script:
 	"""
-	mageck count \\
+	singularity exec -B /work -B /proj/jraablab docker://davidliwei/mageck:latest mageck count \\
 		-l $grna \\
 		-n ${meta.id} \\
 		--sample-label ${meta.id} \\
