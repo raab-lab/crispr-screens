@@ -2,7 +2,7 @@
 
 process merge_counts {
 	publishDir "${params.outdir}/counts/", mode: 'copy'
-	module 'r/4.1.0'
+	module 'r/4.5.0'
 	tag "Merge"
 
 	input:
